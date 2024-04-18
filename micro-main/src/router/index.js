@@ -1,12 +1,20 @@
-import { createRouter, createWebHistory } from 'vue-router';
-
+/*
+ * @Author: shenjilin-home
+ * @Date: 2024-04-18 20:01:30
+ * @LastEditors: shenjilin-home
+ * @LastEditTime: 2024-04-18 21:39:10
+ * @Description:
+ */
+import { createRouter, createWebHistory } from "vue-router";
+import { Location, Document, Menu as IconMenu, } from "@element-plus/icons-vue";
 export const routes = [
   {
-    path: '/',
-    component: () => import('@/layout/index.vue'),
+    path: "/",
+    component: () => import("@/layout/index.vue"),
     meta: {
-      title: '我的菜单',
+      title: "我的菜单",
       keepAlive: true,
+      icon: Location,
     },
     children: [
       // {
@@ -26,16 +34,26 @@ export const routes = [
         name: "page",
         meta: {
           keepAlive: true,
-          title: "我的页面",
+          title: "我的页面1",
+          icon: Document,
         },
         component: () => import("@/views/Page.vue"),
+      },{
+        path: "/page2",
+        name: "page2",
+        meta: {
+          keepAlive: true,
+          title: "我的页面2",
+          icon: IconMenu,
+        },
+        component: () => import("@/views/Page2.vue"),
       },
-    ]
-  }
+    ],
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory("/"),
-  routes
+  routes,
 });
 export default router;
