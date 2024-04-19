@@ -7,9 +7,9 @@ import 'virtual:uno.css';
 // 引入公共css
 import 'element-plus/dist/index.css';
 
-import microApp from '@micro-zoe/micro-app';
+// import microApp from '@micro-zoe/micro-app';
 
 import store from './store/index';
 
-microApp.start();
+// microApp.start();
 createApp(App).use(router).use(store).mount('#app')
