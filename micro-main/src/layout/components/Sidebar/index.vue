@@ -12,7 +12,7 @@
         background-color="#162C5B"
       >
         <SidebarItem
-          v-for="menu in porps.menuList"
+          v-for="menu in menuList"
           :key="menu.path"
           :menu="menu"
           :base-path="menu.path"
@@ -26,18 +26,18 @@ import { useRoute } from "vue-router";
 import { ref } from "vue";
 import SidebarItem from "./SidebarItem.vue";
 import { useSidebar } from '../../hooks/useSidebar';
-// import { useMenuStore } from "@/store/useMenuStore";
+import { useMenuStore } from "@/store/useMenuStore";
 
-const porps = defineProps({
-  menuList: {
-    type: Array,
-    default: () => [],
-  },
-});
-console.log(porps.menuList);
+// const porps = defineProps({
+//   menuList: {
+//     type: Array,
+//     default: () => [],
+//   },
+// });
+// console.log(porps.menuList);
 
 const route = useRoute();
-// const { menuList } = useMenuStore();
+const { menuList } = useMenuStore();
 const activeMenu = ref(route.path);
 
 const { isCollapse } = useSidebar();

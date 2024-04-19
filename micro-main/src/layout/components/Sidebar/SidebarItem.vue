@@ -1,60 +1,54 @@
 <!--
  * @Author: shenjilin-home
  * @Date: 2024-04-18 20:01:30
- * @LastEditors: shenjilin-home
- * @LastEditTime: 2024-04-18 21:37:30
+ * @LastEditors: shenjilin
+ * @LastEditTime: 2024-04-19 18:39:50
  * @Description: 
 -->
 <template>
   <!-- 无子级 -->
-  <template v-if="!menu.children">
-    <el-menu-item v-if="menu?.meta?.openInNewWindow" :index="menu.path" @click="handleClickMenuItem(menu)">
-      <!-- <i v-if="menu.meta.icon" :class="handleMenuIcon(menu)" class="menu-item"></i> -->
-      <el-icon :size="20" v-if="menu.meta.icon">
+  <template v-if="!porps.menu.children">
+    <el-menu-item v-if="porps.menu?.meta?.openInNewWindow" :index="menu.path" @click="handleClickMenuItem(porps.menu)">
+      <el-icon :size="20" v-if="porps.menu?.meta?.icon">
         <component :is="handleMenuIcon(menu)" />
       </el-icon>
       <template #title>
-        <span class="title">{{ menu.meta.title }}</span>
+        <span class="title">{{ porps.menu.meta?.title }}</span>
       </template>
     </el-menu-item>
-    <el-menu-item v-else :index="menu.path" @click="handleClickMenuItem(menu)">
-      <!-- <i v-if="menu.meta.icon" :class="handleMenuIcon(menu)" class="menu-item"></i> -->
-      <el-icon :size="20" v-if="menu.meta.icon">
-        <component :is="handleMenuIcon(menu)" />
+    <el-menu-item v-else :index="porps.menu.path" @click="handleClickMenuItem(porps.menu)">
+      <el-icon :size="20" v-if="porps.menu?.meta?.icon">
+        <component :is="handleMenuIcon(porps.menu)" />
       </el-icon>
       <template #title>
-        <span class="title">{{ menu.meta.title }}</span>
+        <span class="title">{{ porps.menu.meta?.title }}</span>
       </template>
     </el-menu-item>
   </template>
   <!-- 有子级 -->
-  <el-sub-menu v-else :index="menu.path" popper-append-to-body>
+  <el-sub-menu v-else :index="porps.menu.path" popper-append-to-body>
     <template #title>
-      <!-- <i :class="handleMenuIcon(menu)" class="menu-item"></i> -->
-      <el-icon :size="20" v-if="menu.meta.icon">
-        <component :is="handleMenuIcon(menu)" />
+      <el-icon :size="20" v-if="porps.menu?.meta?.icon">
+        <component :is="handleMenuIcon(porps.menu)" />
       </el-icon>
-      <span class="title">{{ menu.meta.title }}</span>
+      <span class="title">{{ porps.menu.meta?.title }}</span>
     </template>
-    <SidebarItem v-for="child in menu.children" :key="child.path" :is-nest="true" :menu="child" />
+    <SidebarItem v-for="child in porps.menu.children" :key="child.path" :is-nest="true" :menu="child" />
   </el-sub-menu>
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
-defineProps({
+import { routerPush } from '@/hooks/useMicro'
+const porps = defineProps({
   menu: {
     type: Object,
     required: true
   },
 });
+console.log(porps.menu, porps.menu.children, 'porps.menu')
 const router = useRouter();
 function handleMenuIcon(menu) {
-  return menu.meta.icon;
-  // const { icon = '' } = menu.meta;
-  // if (icon.startsWith('el-icon')) {
-  //   return icon;
-  // }
-  // return icon;
+  return porps.menu?.meta?.icon;
 }
 
 function handleClickMenuItem({ name, path, meta }) {
