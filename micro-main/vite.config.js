@@ -1,3 +1,10 @@
+/*
+ * @Author: shenjilin-home
+ * @Date: 2024-04-20 09:11:10
+ * @LastEditors: shenjilin-home
+ * @LastEditTime: 2024-04-20 09:17:39
+ * @Description: 
+ */
 import { defineConfig, loadEnv } from "vite";
 import { resolve } from "path";
 import vue from "@vitejs/plugin-vue";
@@ -42,7 +49,13 @@ export default defineConfig((env) => {
       },
     },
     plugins: [
-      vue(),
+      vue({
+        template: {
+          compilerOptions: {
+            isCustomElement: tag => /^micro-app/.test(tag)
+          }
+        }
+      }),
       Unocss({
         // 预设
         presets: [

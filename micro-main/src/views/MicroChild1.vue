@@ -4,6 +4,7 @@
     <micro-app
       name="micro-child1"
       :url="url"
+      :data="microAppData"
       baseroute="/micro-child1"
       router-mode="native-scope"
       iframe
@@ -12,6 +13,10 @@
 </template>
 <script setup>
 import { ref } from "vue";
-const url = ref("http://192.168.202.114:8091/");
+import useMicro from '@/hooks/useMicro.js';
+
+const { microAppData } = useMicro();
+const url = ref("http://localhost:8091/")
+;
 </script>
 <style lang="scss" scoped></style>

@@ -22,7 +22,6 @@
   </div>
 </template>
 <script setup>
-import { useRoute } from "vue-router";
 import { ref } from "vue";
 import SidebarItem from "./SidebarItem.vue";
 import { useSidebar } from '../../hooks/useSidebar';
@@ -36,9 +35,8 @@ import { useMenuStore } from "@/store/useMenuStore";
 // });
 // console.log(porps.menuList);
 
-const route = useRoute();
-const { menuList } = useMenuStore();
-const activeMenu = ref(route.path);
+const { menuList, defaultActiveRoute } = useMenuStore();
+const activeMenu = ref(defaultActiveRoute.value);
 
 const { isCollapse } = useSidebar();
 </script>

@@ -2,7 +2,7 @@
  * @Author: shenjilin-home
  * @Date: 2024-04-18 20:01:30
  * @LastEditors: shenjilin-home
- * @LastEditTime: 2024-04-18 21:41:34
+ * @LastEditTime: 2024-04-20 09:16:01
  * @Description: 
 -->
 <template>
@@ -11,7 +11,7 @@
       class="fixed-header h-[100vh] relative z-0 flex-none bg-[var(--xx-menu-bg-color)]"
     >
       <Sidebar
-        class="sidebar-container bg-[var(--xx-bg-color)]"
+        class="sidebar-container bg-[#fff]"
         :menu-list="menuList"
       />
     </div>

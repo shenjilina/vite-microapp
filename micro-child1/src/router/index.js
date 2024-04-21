@@ -1,8 +1,8 @@
 /*
  * @Author: shenjilin-home
  * @Date: 2024-04-18 22:19:32
- * @LastEditors: shenjilin
- * @LastEditTime: 2024-04-19 14:50:04
+ * @LastEditors: shenjilin-home
+ * @LastEditTime: 2024-04-20 09:49:15
  * @Description:
  */
 import { createRouter, createWebHistory } from "vue-router";
@@ -29,7 +29,6 @@ export const routes = [
     component: () => import("@/views/Page2.vue"),
   },
 ];
-console.log(createWebHistory(window.__MICRO_APP_BASE_ROUTE__), 'createWebHistory');
 const router = createRouter({
   history: createWebHistory(window.__MICRO_APP_BASE_ROUTE__ || "/"),
   routes,
